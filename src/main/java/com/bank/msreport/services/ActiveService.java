@@ -1,6 +1,6 @@
 package com.bank.msreport.services;
 
-import com.bank.mstransaction.models.utils.ResponseActive;
+import com.bank.msreport.models.utils.ResponseActive;
 import reactor.core.publisher.Mono;
 
 public interface ActiveService {

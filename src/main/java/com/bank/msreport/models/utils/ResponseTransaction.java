@@ -1,14 +1,14 @@
 package com.bank.msreport.models.utils;
 
-import com.bank.msreport.models.documents.Parameter;
+import com.bank.msreport.models.documents.Transaction;
 import lombok.Data;
 
 import java.util.List;
 
 @Data
-public class ResponseParameter
+public class ResponseTransaction
 {
-    private List<Parameter> data;
+    private List<Transaction> data;
 
     private String message;
 
