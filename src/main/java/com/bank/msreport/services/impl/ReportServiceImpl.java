@@ -1,6 +1,7 @@
 package com.bank.msreport.services.impl;
 
 import com.bank.msreport.models.documents.Active;
+import com.bank.msreport.models.documents.Pasive;
 import com.bank.msreport.models.documents.Transaction;
 import com.bank.msreport.models.utils.ResponseCreditCard;
 import com.bank.msreport.models.utils.ResponseRange;
@@ -85,7 +86,20 @@ public class ReportServiceImpl implements ReportService {
                                     && active.getDateRegister().isBefore(localDateTimeEnd))
                             .collect(Collectors.toList());
 
-                    return Mono.just(new ResponseRange(activeList,null));
+                    return pasiveService.findAll()
+                            .doOnNext(responsePasives -> log.info(responsePasives.toString()))
+                            .flatMap(responsePasives -> {
+                                if(responsePasives.getData() == null){
+                                    return Mono.just(null);
+                                }
+
+                                List<Pasive> pasiveList = responsePasives.getData().stream()
+                                        .filter(pasive -> pasive.getCreatedDate() !=null && pasive.getCreatedDate().isAfter(localDateTimeIni)
+                                                && pasive.getCreatedDate().isBefore(localDateTimeEnd))
+                                        .collect(Collectors.toList());
+
+                                return Mono.just(new ResponseRange(activeList,pasiveList));
+                            });
                 }).doFinally(fin -> log.info("[END] rangeByProduct report"));
 
     }

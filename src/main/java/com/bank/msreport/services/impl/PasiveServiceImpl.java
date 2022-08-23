@@ -45,7 +45,7 @@ public class PasiveServiceImpl implements PasiveService {
     @Override
     public Mono<ResponsePasives> findAll() {
         return webClient.get()
-                .uri("/api/active/")
+                .uri("/api/pasive/")
                 .retrieve()
                 .bodyToMono(ResponsePasives.class);
     }
