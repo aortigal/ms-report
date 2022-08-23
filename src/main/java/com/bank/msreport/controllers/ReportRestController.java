@@ -4,6 +4,7 @@ import com.bank.msreport.models.utils.ResponseCreditCard;
 import com.bank.msreport.models.utils.ResponseRange;
 import com.bank.msreport.services.ReportService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 import reactor.core.publisher.Mono;
 
@@ -22,7 +23,7 @@ public class ReportRestController{
     }
 
     @GetMapping("/range")
-    public Mono<ResponseRange> rangeByProduct(@RequestParam("ini") String ini, @RequestParam("end") String end) {
+    public Mono<ResponseRange> rangeByProduct(@Validated @RequestParam("ini") String ini,@Validated @RequestParam("end") String end) {
         return reportService.rangeByProduct(ini, end);
     }
 }

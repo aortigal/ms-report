@@ -12,7 +12,9 @@ import org.springframework.stereotype.Service;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 import java.util.Comparator;
 import java.util.List;
@@ -63,9 +65,13 @@ public class ReportServiceImpl implements ReportService {
         log.info("[INI] rangeByProduct report");
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
 
-        LocalDateTime localDateTimeIni = LocalDateTime.parse(ini, formatter);
+        LocalDate localDateIni = LocalDate.parse(ini, formatter);
 
-        LocalDateTime localDateTimeEnd = LocalDateTime.parse(end, formatter);
+        LocalDate localDateEnd = LocalDate.parse(end, formatter);
+
+        LocalDateTime localDateTimeIni = LocalDateTime.of(localDateIni, LocalTime.MIN);
+
+        LocalDateTime localDateTimeEnd = LocalDateTime.of(localDateEnd, LocalTime.MAX);
 
         return activeService.findAll()
                 .doOnNext(transaction -> log.info(transaction.toString()))
@@ -75,7 +81,7 @@ public class ReportServiceImpl implements ReportService {
                     }
 
                     List<Active> activeList = response.getData().stream()
-                            .filter(active -> active.getDateRegister().isAfter(localDateTimeIni)
+                            .filter(active -> active.getDateRegister() !=null && active.getDateRegister().isAfter(localDateTimeIni)
                                     && active.getDateRegister().isBefore(localDateTimeEnd))
                             .collect(Collectors.toList());
 
