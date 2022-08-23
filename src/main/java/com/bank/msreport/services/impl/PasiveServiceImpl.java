@@ -1,8 +1,6 @@
 package com.bank.msreport.services.impl;
 
-import com.bank.msreport.models.utils.Mont;
-import com.bank.msreport.models.utils.ResponseMont;
-import com.bank.msreport.models.utils.ResponseParameter;
+import com.bank.msreport.models.utils.*;
 import com.bank.msreport.services.PasiveService;
 import org.springframework.stereotype.Service;
 import org.springframework.web.reactive.function.client.WebClient;
@@ -42,5 +40,13 @@ public class PasiveServiceImpl implements PasiveService {
                 .body(Mono.just(mont), Mont.class)
                 .retrieve()
                 .bodyToMono(ResponseMont.class);
+    }
+
+    @Override
+    public Mono<ResponsePasives> findAll() {
+        return webClient.get()
+                .uri("/api/active/")
+                .retrieve()
+                .bodyToMono(ResponsePasives.class);
     }
 }

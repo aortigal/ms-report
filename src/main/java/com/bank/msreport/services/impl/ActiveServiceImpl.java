@@ -1,6 +1,7 @@
 package com.bank.msreport.services.impl;
 
 import com.bank.msreport.models.utils.ResponseActive;
+import com.bank.msreport.models.utils.ResponseActives;
 import com.bank.msreport.services.ActiveService;
 import org.springframework.stereotype.Service;
 import org.springframework.web.reactive.function.client.WebClient;
@@ -22,6 +23,22 @@ public class ActiveServiceImpl implements ActiveService {
                 .uri("/api/active/"+ id)
                 .retrieve()
                 .bodyToMono(ResponseActive.class);
+    }
+
+    @Override
+    public Mono<ResponseActive> activesByClient(String id) {
+        return webClient.get()
+                .uri("/api/active/client/"+ id)
+                .retrieve()
+                .bodyToMono(ResponseActive.class);
+    }
+
+    @Override
+    public Mono<ResponseActives> findAll() {
+        return webClient.get()
+                .uri("/api/active/")
+                .retrieve()
+                .bodyToMono(ResponseActives.class);
     }
 
 }
