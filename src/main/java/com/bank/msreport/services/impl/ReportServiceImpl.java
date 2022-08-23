@@ -59,7 +59,7 @@ public class ReportServiceImpl implements ReportService {
     }
 
     @Override
-    public Mono<ResponseRange> rangeByProduct(String id, String ini, String end) {
+    public Mono<ResponseRange> rangeByProduct(String ini, String end) {
         log.info("[INI] rangeByProduct report");
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
 

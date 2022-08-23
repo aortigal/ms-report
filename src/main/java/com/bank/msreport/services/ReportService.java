@@ -9,6 +9,6 @@ import java.util.List;
 public interface ReportService {
     Mono<List<ResponseCreditCard>> movementCreditCard(String id);
 
-    Mono<ResponseRange> rangeByProduct(String id, String ini, String end);
+    Mono<ResponseRange> rangeByProduct(String ini, String end);
 
 }

@@ -21,8 +21,8 @@ public class ReportRestController{
         return reportService.movementCreditCard(id);
     }
 
-    @GetMapping("/range/{id}")
-    public Mono<List<ResponseRange>> rangeByProduct(@PathVariable("id") String id, @RequestParam("ini") String ini, @RequestParam("end") String end) {
-        return reportService.rangeByProduct(id, ini, end);
+    @GetMapping("/range")
+    public Mono<ResponseRange> rangeByProduct(@RequestParam("ini") String ini, @RequestParam("end") String end) {
+        return reportService.rangeByProduct(ini, end);
     }
 }
