@@ -14,7 +14,7 @@ public class ResponseCreditCard {
 
     private String movementType;
 
-    private float mont;
+    private float amount;
 
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     private LocalDateTime dateRegister;

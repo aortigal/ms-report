@@ -6,5 +6,5 @@ import lombok.Data;
 public class Credit
 {
     private String id;
-    private Float creditMont;
+    private Float creditAmount;
 }

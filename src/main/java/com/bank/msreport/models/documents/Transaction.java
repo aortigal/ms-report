@@ -10,7 +10,7 @@ public class Transaction extends Audit
     private String activeId;
     private String clientId;
     private String creditId;
-    private float mont;
+    private float amount;
     private String seller;
     private String ruc;
 

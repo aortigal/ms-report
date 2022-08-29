@@ -55,7 +55,7 @@ public class ReportServiceImpl implements ReportService {
                                 ResponseCreditCard responseCreditCard = new ResponseCreditCard();
                                 responseCreditCard.setDateRegister(transaction.getDateRegister());
                                 responseCreditCard.setMovementType("Transaction");
-                                responseCreditCard.setMont(transaction.getMont());
+                                responseCreditCard.setAmount(transaction.getAmount());
                                 return responseCreditCard;
                             }).collectList();
                 }).doFinally(fin -> log.info("[END] movementCreditCard report"));

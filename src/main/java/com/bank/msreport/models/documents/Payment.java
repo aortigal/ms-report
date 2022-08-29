@@ -10,5 +10,5 @@ public class Payment extends Audit
     private String activeId;
     private String clientId;
     private String creditId;
-    private Float mont;
+    private Float amount;
 }
